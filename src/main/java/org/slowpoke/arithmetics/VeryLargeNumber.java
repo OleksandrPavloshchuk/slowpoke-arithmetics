@@ -21,7 +21,7 @@ public abstract class VeryLargeNumber {
 	}
 
 	public static final String div(String s1, String s2, int precision) {
-		return new Divide(precision).perform(new Factory().createFrom(s1),
+		return new DivideGreater(precision).perform(new Factory().createFrom(s1),
 				new Factory().createFrom(s2)).toString();
 	}
 

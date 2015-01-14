@@ -104,6 +104,7 @@ class Number {
 	}
 
 	int compareAbs(Number that) {
+		setCommonPointOffset(that);
 		final int size = getMaxDigits(that);
 		for (int i = size - 1; i >= 0; i--) {
 			final int thisN = this.getDigit(i);
@@ -124,6 +125,11 @@ class Number {
 			}
 		}
 		return true;
+	}
+
+	// TODO (2015/01/14) this method is not the best. Develop the better one
+	boolean isA(String str) {
+		return toString().equals(str);
 	}
 
 	Number multiplyTo10(int times) {
