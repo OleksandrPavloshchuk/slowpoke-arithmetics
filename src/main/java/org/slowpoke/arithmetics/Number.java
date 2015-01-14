@@ -117,6 +117,15 @@ class Number {
 		return 0;
 	}
 
+	boolean isZero() {
+		for (int i = 0; i < this.digits.size(); i++) {
+			if (0 != this.digits.get(i)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	Number multiplyTo10(int times) {
 		for (int i = 0; i < times; i++) {
 			this.digits.add(0, (byte) 0);
