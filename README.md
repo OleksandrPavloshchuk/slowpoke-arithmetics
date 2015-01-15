@@ -13,11 +13,17 @@ How to use it?
 
 Very simple:
 
+
 String addResultStr = VeryBigNumber.add( arg1Str, arg2Str );
+
 String subResultStr = VeryBigNumber.sub( arg1Str, arg2Str );
+
 String mulResultStr = VeryBigNumber.mul( arg1Str, arg2Str );
-int precision = 3;  // extra digits after calculation
+
+int precision = 3;
+
 String divResultStr = VeryBigNumber.div( arg1Str, arg2Str, precision );
+
 
 In every case if argument is not parsable decimal number, it is treated as zero.
 If you try to divide by zero, method throws an exception.
