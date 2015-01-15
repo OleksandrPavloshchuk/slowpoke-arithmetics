@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class DivideGreaterWithRestUnitTest {
+public class DivideWithRestUnitTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void divToZero() {
@@ -14,10 +14,10 @@ public class DivideGreaterWithRestUnitTest {
 		assertEquals("", div("0.1782", "0"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void whenDivideLessThatThrowException() {
-		assertEquals("", div("89", "120"));
-		assertEquals("", div("-0.0023872", "16"));
+	@Test
+	public void divLess() {
+		divWithRest("0", "0", "0", "56");
+		divWithRest("0", "7882", "7882", "10034");
 	}
 
 	@Test
@@ -25,6 +25,8 @@ public class DivideGreaterWithRestUnitTest {
 		divWithRest("182773", "0", "182773", "1");
 		divWithRest("-16", "0", "16", "-1");
 		divWithRest("77", "0", "-77", "-1");
+		divWithRest("-1", "0", "101", "-101");
+		divWithRest("1", "0", "8291", "8291");
 	}
 
 	@Test
@@ -51,7 +53,7 @@ public class DivideGreaterWithRestUnitTest {
 	private static String[] div(String s1, String s2) {
 		final Number n1 = new Factory().createFrom(s1);
 		final Number n2 = new Factory().createFrom(s2);
-		final DivideGreaterWithRest div = new DivideGreaterWithRest();
+		final DivideWithRest div = new DivideWithRest();
 		Number result = div.perform(n1, n2);
 		return new String[] { result.toString(), div.getRest().toString() };
 	}

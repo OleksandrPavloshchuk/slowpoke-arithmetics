@@ -2,14 +2,14 @@ package org.slowpoke.arithmetics;
 
 import static org.slowpoke.arithmetics.VeryLargeNumber.mul;
 
-public class DivideGreaterWithRest extends BinaryOperation {
+public class DivideWithRest extends BinaryOperation {
 
 	private final String[] digitProducts = new String[10];
 	private Number lastProbe = null;
 	private Number rest = new Factory().createZero();
 	private int sign = 1;
 
-	DivideGreaterWithRest() {
+	DivideWithRest() {
 		this.digitProducts[0] = "0";
 	}
 
@@ -52,8 +52,8 @@ public class DivideGreaterWithRest extends BinaryOperation {
 		sign = n1.getSign() * n2.getSign();
 
 		if (0 > compareAbs) {
-			throw new IllegalArgumentException(
-					"1st argument by module is less that 2nd one");
+			this.rest = new Factory().createCopy(n1);
+			return new Factory().createZero();
 		} else if (0 == compareAbs) {
 			return new Factory().createFrom("1").setSign(sign);
 		}
