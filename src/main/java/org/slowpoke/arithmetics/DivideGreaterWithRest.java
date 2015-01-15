@@ -6,7 +6,8 @@ public class DivideGreaterWithRest extends BinaryOperation {
 
 	private final String[] digitProducts = new String[10];
 	private Number lastProbe = null;
-	private Number rest = null;
+	private Number rest = new Factory().createZero();
+	private int sign = 1;
 
 	DivideGreaterWithRest() {
 		this.digitProducts[0] = "0";
@@ -14,26 +15,9 @@ public class DivideGreaterWithRest extends BinaryOperation {
 
 	@Override
 	Number perform(Number n1, Number n2) {
-		if (n2.isZero()) {
-			throw new IllegalArgumentException("Divide by zero");
-		}
-		if (n1.isZero() || n2.isA("1")) {
-			return new Factory().createCopy(n1);
-		}
-		if (n2.isA("-1")) {
-			final Number result = new Factory().createCopy(n1);
-			result.setSign(-result.getSign());
-			return result;
-		}
-
-		final int compareAbs = n1.compareAbs(n2);
-		final int sign = n1.getSign() * n2.getSign();
-
-		if (0 > compareAbs) {
-			throw new IllegalArgumentException(
-					"1st argument by module is less that 2nd one");
-		} else if (0 == compareAbs) {
-			return new Factory().createFrom("1").setSign(sign);
+		final Number trivial = calculateTrivial(n1, n2);
+		if (null != trivial) {
+			return trivial;
 		}
 
 		prepareDigitProducts(n2);
@@ -49,6 +33,31 @@ public class DivideGreaterWithRest extends BinaryOperation {
 
 		result.setSign(sign);
 		return result;
+	}
+
+	private Number calculateTrivial(Number n1, Number n2) {
+		if (n2.isZero()) {
+			throw new IllegalArgumentException("Divide by zero");
+		}
+		if (n1.isZero() || n2.isA("1")) {
+			return new Factory().createCopy(n1);
+		}
+		if (n2.isA("-1")) {
+			final Number result = new Factory().createCopy(n1);
+			result.setSign(-result.getSign());
+			return result;
+		}
+
+		final int compareAbs = n1.compareAbs(n2);
+		sign = n1.getSign() * n2.getSign();
+
+		if (0 > compareAbs) {
+			throw new IllegalArgumentException(
+					"1st argument by module is less that 2nd one");
+		} else if (0 == compareAbs) {
+			return new Factory().createFrom("1").setSign(sign);
+		}
+		return null;
 	}
 
 	Number getRest() {

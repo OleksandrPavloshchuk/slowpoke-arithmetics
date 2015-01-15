@@ -21,12 +21,10 @@ public class DivideGreaterWithRestUnitTest {
 	}
 
 	@Test
-	public void divToPredefined() {
-		assertEquals("4891.89", div("4891.89", "1"));
-		assertEquals("0", div("0", "12"));
-		assertEquals("123", div("-123", "-1"));
-		assertEquals("-1", div("-9000", "9000"));
-		assertEquals("1", div("78.000", "78"));
+	public void trivial() {
+		divWithRest("182773", "0", "182773", "1");
+		divWithRest("-16", "0", "16", "-1");
+		divWithRest("77", "0", "-77", "-1");
 	}
 
 	@Test
