@@ -20,9 +20,7 @@ String subResultStr = VeryLargeNumber.sub( arg1Str, arg2Str );
 
 String mulResultStr = VeryLargeNumber.mul( arg1Str, arg2Str );
 
-int precision = 3;
-
-String divResultStr = VeryLargeNumber.div( arg1Str, arg2Str, precision );
+String divResultStr = VeryLargeNumber.div( arg1Str, arg2Str );
 
 
 In every case if argument is not parsable decimal number, it is treated as zero.
