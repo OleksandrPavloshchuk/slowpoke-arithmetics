@@ -15,8 +15,10 @@ class DivideWithRest extends BinaryOperation {
 
 	@Override
 	Number perform(Number n1, Number n2) {
-		final Number trivial = calculateTrivial(n1, n2);
+		final TrivialDivide trivialDivide = new TrivialDivide();
+		final Number trivial = trivialDivide.perform(n1, n2);
 		if (null != trivial) {
+			rest = trivialDivide.getRest();
 			return trivial;
 		}
 
@@ -34,34 +36,9 @@ class DivideWithRest extends BinaryOperation {
 		result.setSign(sign);
 		return result;
 	}
-	
+
 	Number getRest() {
 		return rest;
-	}	
-
-	private Number calculateTrivial(Number n1, Number n2) {
-		if (n2.isZero()) {
-			throw new IllegalArgumentException("Divide by zero");
-		}
-		if (n1.isZero() || n2.isA("1")) {
-			return new Factory().createCopy(n1);
-		}
-		if (n2.isA("-1")) {
-			final Number result = new Factory().createCopy(n1);
-			result.setSign(-result.getSign());
-			return result;
-		}
-
-		final int compareAbs = n1.compareAbs(n2);
-		sign = n1.getSign() * n2.getSign();
-
-		if (0 > compareAbs) {
-			this.rest = new Factory().createCopy(n1);
-			return new Factory().createZero();
-		} else if (0 == compareAbs) {
-			return new Factory().createFrom("1").setSign(sign);
-		}
-		return null;
 	}
 
 	private void prepareDigitProducts(Number n) {
