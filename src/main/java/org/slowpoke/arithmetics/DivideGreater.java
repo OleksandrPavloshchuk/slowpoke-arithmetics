@@ -45,12 +45,12 @@ public class DivideGreater extends BinaryOperation {
 		Number rest = n1;
 		for (int order = orderDiff; order >= 0; order--) {
 			int digit = findDigit(rest, order);
-			result.addDigit(digit);
+			result.setDigit( order, digit);
 			rest = new SubtractAbs().perform(rest, lastProbe);
 		}
-
 		// TODO: what we have to do with the rest and how to normalize digits and precision?
 
+		/* TODO do nothing with the point offset for a while
 		int pointOffset = n1.getPointOffset() - n2.getPointOffset() + precision;
 		if (0 > pointOffset) {
 			result.multiplyTo10(-pointOffset);
@@ -58,6 +58,7 @@ public class DivideGreater extends BinaryOperation {
 		} else {
 			result.setPointOffset(pointOffset);
 		}
+		*/
 		result.setSign(sign);
 		return result;
 	}
