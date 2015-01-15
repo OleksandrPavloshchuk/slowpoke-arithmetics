@@ -2,7 +2,7 @@ package org.slowpoke.arithmetics;
 
 import static org.slowpoke.arithmetics.VeryLargeNumber.mul;
 
-public class DivideWithRest extends BinaryOperation {
+class DivideWithRest extends BinaryOperation {
 
 	private final String[] digitProducts = new String[10];
 	private Number lastProbe = null;
@@ -34,6 +34,10 @@ public class DivideWithRest extends BinaryOperation {
 		result.setSign(sign);
 		return result;
 	}
+	
+	Number getRest() {
+		return rest;
+	}	
 
 	private Number calculateTrivial(Number n1, Number n2) {
 		if (n2.isZero()) {
@@ -58,10 +62,6 @@ public class DivideWithRest extends BinaryOperation {
 			return new Factory().createFrom("1").setSign(sign);
 		}
 		return null;
-	}
-
-	Number getRest() {
-		return rest;
 	}
 
 	private void prepareDigitProducts(Number n) {

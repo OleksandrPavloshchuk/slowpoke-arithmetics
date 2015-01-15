@@ -145,7 +145,7 @@ class Number {
 		return offset;
 	}
 
-	void setCommonPointOffset(Number that) {
+	int setCommonPointOffset(Number that) {
 		final int thisN = this.getPointOffset();
 		final int thatN = that.getPointOffset();
 		final int max = thisN > thatN ? thisN : thatN;
@@ -153,6 +153,7 @@ class Number {
 		that.multiplyTo10(max - thatN);
 		this.setPointOffset(max);
 		that.setPointOffset(max);
+		return max;
 	}
 
 }

@@ -4,7 +4,7 @@ class SubtractAbs extends BinaryOperation {
 
 	@Override
 	Number perform(Number n1, Number n2) {
-		n1.setCommonPointOffset(n2);
+		final int pointOffset = n1.setCommonPointOffset(n2);
 		if (0 > n1.compareAbs(n2)) {
 			throw new IllegalArgumentException(
 					"The 1st argument's absolute value is less that 2nd one");
@@ -20,7 +20,7 @@ class SubtractAbs extends BinaryOperation {
 			}
 			result.setDigit(i, b1 - b2);
 		}
-		result.setPointOffset(n1.getPointOffset());
+		result.setPointOffset(pointOffset);
 		return result;
 	}
 

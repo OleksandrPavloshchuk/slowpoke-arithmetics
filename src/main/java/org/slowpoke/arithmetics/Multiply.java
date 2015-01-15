@@ -24,9 +24,7 @@ class Multiply extends BinaryOperation {
 			prev = n / 10;
 			result.addDigit(n % 10);
 		}
-		if (0 < prev) {
-			result.addDigit(prev);
-		}
+		result.addDigit(prev);
 		return result;
 	}
 
