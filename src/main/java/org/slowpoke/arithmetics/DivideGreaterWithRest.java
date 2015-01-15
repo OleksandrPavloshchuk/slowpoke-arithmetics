@@ -2,16 +2,14 @@ package org.slowpoke.arithmetics;
 
 import static org.slowpoke.arithmetics.VeryLargeNumber.mul;
 
-public class DivideGreater extends BinaryOperation {
-
-	private final int precision;
+public class DivideGreaterWithRest extends BinaryOperation {
 
 	private final String[] digitProducts = new String[10];
 	private Number lastProbe = null;
+	private Number rest = null;
 
-	DivideGreater(int precision) {
+	DivideGreaterWithRest() {
 		this.digitProducts[0] = "0";
-		this.precision = 0 > precision ? 0 : precision;
 	}
 
 	@Override
@@ -42,25 +40,19 @@ public class DivideGreater extends BinaryOperation {
 
 		Number result = new Number();
 		final int orderDiff = getOrderDifference(n1, n2);
-		Number rest = n1;
+		this.rest = n1;
 		for (int order = orderDiff; order >= 0; order--) {
-			int digit = findDigit(rest, order);
-			result.setDigit( order, digit);
+			int digit = findDigit(order);
+			result.setDigit(order, digit);
 			rest = new SubtractAbs().perform(rest, lastProbe);
 		}
-		// TODO: what we have to do with the rest and how to normalize digits and precision?
 
-		/* TODO do nothing with the point offset for a while
-		int pointOffset = n1.getPointOffset() - n2.getPointOffset() + precision;
-		if (0 > pointOffset) {
-			result.multiplyTo10(-pointOffset);
-			result.setPointOffset(0);
-		} else {
-			result.setPointOffset(pointOffset);
-		}
-		*/
 		result.setSign(sign);
 		return result;
+	}
+
+	Number getRest() {
+		return rest;
 	}
 
 	private void prepareDigitProducts(Number n) {
@@ -69,11 +61,11 @@ public class DivideGreater extends BinaryOperation {
 		}
 	}
 
-	private int findDigit(Number n, int order) {
+	private int findDigit(int order) {
 		for (int i = 9; i >= 0; i--) {
 			this.lastProbe = new Factory().createFrom(this.digitProducts[i])
 					.multiplyTo10(order);
-			if (0 >= this.lastProbe.compareAbs(n)) {
+			if (0 >= this.lastProbe.compareAbs(rest)) {
 				return i;
 			}
 		}

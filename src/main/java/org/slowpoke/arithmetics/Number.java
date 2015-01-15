@@ -139,6 +139,12 @@ class Number {
 		return this;
 	}
 
+	int getDeltaForRound() {
+		final int lastDigit = this.digits.get(0);
+		final int offset = 5 <= lastDigit ? 1 : 0;
+		return offset;
+	}
+
 	void setCommonPointOffset(Number that) {
 		final int thisN = this.getPointOffset();
 		final int thatN = that.getPointOffset();
@@ -147,7 +153,6 @@ class Number {
 		that.multiplyTo10(max - thatN);
 		this.setPointOffset(max);
 		that.setPointOffset(max);
-
 	}
 
 }
