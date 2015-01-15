@@ -14,15 +14,15 @@ How to use it?
 Very simple:
 
 
-String addResultStr = VeryBigNumber.add( arg1Str, arg2Str );
+String addResultStr = VeryLargeNumber.add( arg1Str, arg2Str );
 
-String subResultStr = VeryBigNumber.sub( arg1Str, arg2Str );
+String subResultStr = VeryLargeNumber.sub( arg1Str, arg2Str );
 
-String mulResultStr = VeryBigNumber.mul( arg1Str, arg2Str );
+String mulResultStr = VeryLargeNumber.mul( arg1Str, arg2Str );
 
 int precision = 3;
 
-String divResultStr = VeryBigNumber.div( arg1Str, arg2Str, precision );
+String divResultStr = VeryLargeNumber.div( arg1Str, arg2Str, precision );
 
 
 In every case if argument is not parsable decimal number, it is treated as zero.
