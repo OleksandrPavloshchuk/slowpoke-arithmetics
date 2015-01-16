@@ -10,14 +10,17 @@ class Divide extends BinaryOperation {
 		final DivideWithRest divideBeforePoint = new DivideWithRest();
 		final Number beforePoint = divideBeforePoint.perform(n1, n2);
 		final Number rest = divideBeforePoint.getRest();
+		if( rest.isZero() ) {
+			return beforePoint;
+		}
 
 		int count = 0;
 		while (0 > rest.compareAbs(n2)) {
 			count++;
 			rest.multiplyTo10(1);
 		}
-		rest.multiplyTo10(2);
-		count += 2;
+		rest.multiplyTo10(3);
+		count += 3;
 
 		beforePoint.multiplyTo10(count);
 
