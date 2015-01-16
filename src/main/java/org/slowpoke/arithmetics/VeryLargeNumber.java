@@ -4,7 +4,6 @@ package org.slowpoke.arithmetics;
  * Static facade for all the operations
  */
 
-// TODO implement divide
 public abstract class VeryLargeNumber {
 
 	public static final String add(String s1, String s2) {
