@@ -16,21 +16,18 @@ class Divide extends BinaryOperation {
 			count++;
 			rest.multiplyTo10(1);
 		}
-		rest.multiplyTo10(1);
-		count++;
-		
+		rest.multiplyTo10(2);
+		count += 2;
+
 		beforePoint.multiplyTo10(count);
-		
+
 		final DivideWithRest divideAfterPoint = new DivideWithRest();
 		final Number afterPoint = divideAfterPoint.perform(rest, n2);
 
 		final Number result = new AddAbs().perform(beforePoint, afterPoint);
-		result.setSign( n1.getSign() * n2.getSign() );
-		
-		// TODO implement rounding of last digit here
-		
-		// TODO: set correct point offset
+		result.setSign(n1.getSign() * n2.getSign());
 		result.setPointOffset(count);
+		result.round();
 
 		return result;
 	}

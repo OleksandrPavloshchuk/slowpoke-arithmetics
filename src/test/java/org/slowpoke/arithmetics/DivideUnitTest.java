@@ -10,6 +10,7 @@ public class DivideUnitTest {
 	@Test
 	public void exact() {
 		assertEquals( "12.23", div( "122.3", "10" ) );
+		assertEquals( "89.78", div( "808", "9" ) );
 	}
 	
 }

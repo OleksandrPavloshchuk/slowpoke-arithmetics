@@ -138,6 +138,17 @@ class Number {
 		}
 		return this;
 	}
+	
+	void round() {
+		if( isZero() || 0==pointOffset ) {
+			return;
+		}
+		final int deltaForRound = getDeltaForRound();
+		this.digits.remove(0);
+		this.setDigit(0, this.getDigit(0) + deltaForRound );
+		this.pointOffset--;
+	}
+	
 
 	int getDeltaForRound() {
 		final int lastDigit = this.digits.get(0);
