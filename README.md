@@ -25,9 +25,6 @@ String divResultStr = VeryLargeNumber.div( arg1Str, arg2Str );
 
 In every case if argument is not parsable decimal number, it is treated as zero.
 If you try to divide by zero, method throws an exception.
-Precision is the maximum number of additional digits, that may be added during division action. 
-It's implemented in order to avoid possibly division period.
-
 
 January 15, 2015
 
