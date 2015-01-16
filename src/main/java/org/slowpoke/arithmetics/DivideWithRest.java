@@ -8,6 +8,7 @@ class DivideWithRest extends BinaryOperation {
 	private Number lastProbe = null;
 	private Number rest = new Factory().createZero();
 	private int sign = 1;
+	private final SubtractAbs subtractAbs = new SubtractAbs();
 
 	DivideWithRest() {
 		this.digitProducts[0] = "0";
@@ -21,16 +22,20 @@ class DivideWithRest extends BinaryOperation {
 			rest = trivialDivide.getRest();
 			return trivial;
 		}
+		// Arrange point offsets:
+		n1.setCommonPointOffset(n2);
+		n1.setPointOffset(0);
+		n2.setPointOffset(0);
 
 		prepareDigitProducts(n2);
 
-		Number result = new Number();
+		final Number result = new Number();
 		final int orderDiff = getOrderDifference(n1, n2);
 		this.rest = n1;
 		for (int order = orderDiff; order >= 0; order--) {
 			int digit = findDigit(order);
 			result.setDigit(order, digit);
-			rest = new SubtractAbs().perform(rest, lastProbe);
+			this.rest = this.subtractAbs.perform(rest, lastProbe);
 		}
 
 		result.setSign(sign);
@@ -60,8 +65,8 @@ class DivideWithRest extends BinaryOperation {
 
 	// Difference of the number orders
 	private int getOrderDifference(Number n1, Number n2) {
-		int size1 = n1.getDigitsCount() - n1.getPointOffset();
-		int size2 = n2.getDigitsCount() - n2.getPointOffset();
+		final int size1 = n1.getDigitsCount() - n1.getPointOffset();
+		final int size2 = n2.getDigitsCount() - n2.getPointOffset();
 		return size1 - size2;
 	}
 
