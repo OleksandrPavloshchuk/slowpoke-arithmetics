@@ -2,6 +2,16 @@ package org.slowpoke.arithmetics;
 
 class Factory {
 
+	Number createCopy(Number src) {
+		Number result = new Number();
+		result.setSign(src.getSign());
+		result.setPointOffset(src.getPointOffset());
+		for (int i = 0; i < src.getDigitsCount(); i++) {
+			result.addDigit(src.getDigit(i));
+		}
+		return result;
+	}
+
 	Number createZero() {
 		return createFrom("0");
 	}

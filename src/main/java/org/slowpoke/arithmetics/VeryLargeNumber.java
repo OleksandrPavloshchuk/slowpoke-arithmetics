@@ -1,12 +1,9 @@
 package org.slowpoke.arithmetics;
 
-// TODO: implement divide
-
 /**
- * Static facade for all the operations  
+ * Static facade for all the operations
  */
 
-// TODO: implement the div operation
 public abstract class VeryLargeNumber {
 
 	public static final String add(String s1, String s2) {
@@ -23,5 +20,11 @@ public abstract class VeryLargeNumber {
 		return new Subtract().perform(new Factory().createFrom(s1),
 				new Factory().createFrom(s2)).toString();
 	}
+	
+	public static final String div(String s1, String s2) {
+		return new Divide().perform(new Factory().createFrom(s1),
+				new Factory().createFrom(s2)).toString();
+	}
+	
 
 }

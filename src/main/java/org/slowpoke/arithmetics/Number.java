@@ -104,6 +104,7 @@ class Number {
 	}
 
 	int compareAbs(Number that) {
+		setCommonPointOffset(that);
 		final int size = getMaxDigits(that);
 		for (int i = size - 1; i >= 0; i--) {
 			final int thisN = this.getDigit(i);
@@ -117,14 +118,45 @@ class Number {
 		return 0;
 	}
 
+	boolean isZero() {
+		for (int i = 0; i < this.digits.size(); i++) {
+			if (0 != this.digits.get(i)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// TODO (2015/01/14) this method is not the best. Develop the better one
+	boolean isA(String str) {
+		return toString().equals(str);
+	}
+
 	Number multiplyTo10(int times) {
 		for (int i = 0; i < times; i++) {
 			this.digits.add(0, (byte) 0);
 		}
 		return this;
 	}
+	
+	void round() {
+		if( isZero() || 0==pointOffset ) {
+			return;
+		}
+		final int deltaForRound = getDeltaForRound();
+		this.digits.remove(0);
+		this.setDigit(0, this.getDigit(0) + deltaForRound );
+		this.pointOffset--;
+	}
+	
 
-	void setCommonPointOffset(Number that) {
+	int getDeltaForRound() {
+		final int lastDigit = this.digits.get(0);
+		final int offset = 5 <= lastDigit ? 1 : 0;
+		return offset;
+	}
+
+	int setCommonPointOffset(Number that) {
 		final int thisN = this.getPointOffset();
 		final int thatN = that.getPointOffset();
 		final int max = thisN > thatN ? thisN : thatN;
@@ -132,7 +164,7 @@ class Number {
 		that.multiplyTo10(max - thatN);
 		this.setPointOffset(max);
 		that.setPointOffset(max);
-
+		return max;
 	}
 
 }
