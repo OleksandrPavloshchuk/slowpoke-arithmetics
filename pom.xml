@@ -4,7 +4,7 @@
 
     <groupId>slowpoke-arithmetics</groupId>
     <artifactId>slowpoke-arithmetics</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
     <name>slowpoke-arithmetics</name>

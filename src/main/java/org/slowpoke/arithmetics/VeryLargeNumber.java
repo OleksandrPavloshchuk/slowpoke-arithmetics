@@ -20,11 +20,15 @@ public abstract class VeryLargeNumber {
 		return new Subtract().perform(new Factory().createFrom(s1),
 				new Factory().createFrom(s2)).toString();
 	}
-	
+
 	public static final String div(String s1, String s2) {
 		return new Divide().perform(new Factory().createFrom(s1),
 				new Factory().createFrom(s2)).toString();
 	}
-	
+
+	public static int compare(String s1, String s2) {
+		return new Compare().perform(new Factory().createFrom(s1),
+				new Factory().createFrom(s2));
+	}
 
 }
