@@ -1,8 +1,6 @@
 package org.slowpoke.arithmetics;
 
-class TrivialDivide extends BinaryOperation {
-
-	private Number rest = new Factory().createZero();
+class TrivialDivide extends DivideBase {
 
 	@Override
 	Number perform(Number n1, Number n2) {
@@ -22,16 +20,12 @@ class TrivialDivide extends BinaryOperation {
 		int sign = n1.getSign() * n2.getSign();
 
 		if (0 > compareAbs) {
-			this.rest = new Factory().createCopy(n1);
+			setRest(new Factory().createCopy(n1));
 			return new Factory().createZero();
 		} else if (0 == compareAbs) {
 			return new Factory().createFrom("1").setSign(sign);
 		}
 		return null;
-	}
-
-	Number getRest() {
-		return rest;
 	}
 
 }

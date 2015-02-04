@@ -2,11 +2,10 @@ package org.slowpoke.arithmetics;
 
 import static org.slowpoke.arithmetics.VeryLargeNumber.mul;
 
-class DivideWithRest extends BinaryOperation {
+class DivideWithRest extends DivideBase {
 
 	private final String[] digitProducts = new String[10];
 	private Number lastProbe = null;
-	private Number rest = new Factory().createZero();
 	private int sign = 1;
 	private final SubtractAbs subtractAbs = new SubtractAbs();
 
@@ -19,7 +18,7 @@ class DivideWithRest extends BinaryOperation {
 		final TrivialDivide trivialDivide = new TrivialDivide();
 		final Number trivial = trivialDivide.perform(n1, n2);
 		if (null != trivial) {
-			rest = trivialDivide.getRest();
+			setRest(trivialDivide.getRest());
 			return trivial;
 		}
 		// Arrange point offsets:
@@ -31,19 +30,15 @@ class DivideWithRest extends BinaryOperation {
 
 		final Number result = new Number();
 		final int orderDiff = getOrderDifference(n1, n2);
-		this.rest = n1;
+		setRest(n1);
 		for (int order = orderDiff; order >= 0; order--) {
 			int digit = findDigit(order);
 			result.setDigit(order, digit);
-			this.rest = this.subtractAbs.perform(rest, lastProbe);
+			setRest(this.subtractAbs.perform(getRest(), lastProbe));
 		}
 
 		result.setSign(sign);
 		return result;
-	}
-
-	Number getRest() {
-		return rest;
 	}
 
 	private void prepareDigitProducts(Number n) {
@@ -56,7 +51,7 @@ class DivideWithRest extends BinaryOperation {
 		for (int i = 9; i >= 0; i--) {
 			this.lastProbe = new Factory().createFrom(this.digitProducts[i])
 					.multiplyTo10(order);
-			if (0 >= this.lastProbe.compareAbs(rest)) {
+			if (0 >= this.lastProbe.compareAbs(getRest())) {
 				return i;
 			}
 		}
