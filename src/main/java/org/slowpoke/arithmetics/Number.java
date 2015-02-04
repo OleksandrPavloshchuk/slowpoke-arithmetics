@@ -46,10 +46,6 @@ class Number {
 		digits.set(n, (byte) b);
 	}
 
-	void addDigit(int n) {
-		digits.add((byte) n);
-	}
-
 	@Override
 	public String toString() {
 		final int size = digits.size();

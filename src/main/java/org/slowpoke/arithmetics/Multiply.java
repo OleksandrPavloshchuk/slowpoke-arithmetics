@@ -33,9 +33,9 @@ class Multiply extends BinaryOperation {
 		for (int i = 0; i < src.getDigitsCount(); i++) {
 			final int n = src.getDigit(i) * b + prev;
 			prev = n / 10;
-			result.addDigit(n % 10);
+			result.setDigit(i, n % 10);
 		}
-		result.addDigit(prev);
+		result.setDigit(src.getDigitsCount(), prev);
 		return result;
 	}
 

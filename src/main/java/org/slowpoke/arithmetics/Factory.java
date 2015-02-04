@@ -7,7 +7,7 @@ class Factory {
 		result.setSign(src.getSign());
 		result.setPointOffset(src.getPointOffset());
 		for (int i = 0; i < src.getDigitsCount(); i++) {
-			result.addDigit(src.getDigit(i));
+			result.setDigit(i, src.getDigit(i));
 		}
 		return result;
 	}
@@ -27,7 +27,7 @@ class Factory {
 				result.setPointOffset(result.getDigitsCount());
 			} else if (Character.isDigit(c)) {
 				c -= Number.OFFSET;
-				result.addDigit(c);
+				result.setDigit( result.getDigitsCount(), c);
 			}
 		}
 		return result;

@@ -13,7 +13,7 @@ class AddAbs extends BinaryOperation {
 			prev = n / 10;
 			result.setDigit(i, n % 10);
 		}
-		result.addDigit(prev);
+		result.setDigit(max, prev);
 		result.setPointOffset(pointOffset);
 		return result;
 	}
