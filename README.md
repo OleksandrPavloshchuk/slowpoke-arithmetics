@@ -22,9 +22,14 @@ String mulResultStr = VeryLargeNumber.mul( arg1Str, arg2Str );
 
 String divResultStr = VeryLargeNumber.div( arg1Str, arg2Str );
 
+int compareResult = VeryLargeNumber.compare( arg1Str, arg2Str );
+
+If compareResult is zero, then numbers are equal. 
+If compareResult is less than zero, the 1st number is less then 2nd.
+If compareResult is greater than zero, the 1st number is greater then 2nd.
 
 In every case if argument is not parsable decimal number, it is treated as zero.
 If you try to divide by zero, method throws an exception.
 
-January 15, 2015
+February 4, 2015
 
