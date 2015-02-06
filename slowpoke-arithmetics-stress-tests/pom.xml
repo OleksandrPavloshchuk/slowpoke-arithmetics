@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>slowpoke-arithmetics</groupId>
+        <artifactId>slowpoke-arithmetics-all</artifactId>
+        <version>${global.version}</version>
+        <relativePath>..</relativePath>
+    </parent>
+	
+    <groupId>slowpoke-arithmetics</groupId>
+    <artifactId>slowpoke-arithmetics-stress-tests</artifactId>
+    <version>${global.version}</version>
+    <packaging>jar</packaging>
+
+    <name>slowpoke-arithmetics</name>
+    <url>https://github.com/OleksandrPavloshchuk/slowpoke-arithmetics</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.2.201409121644</version>
+                <configuration>
+                    <excludes>
+                        <exclude>org/slowpoke/arithmetics/**/*Test.class</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+		<dependency>
+            <groupId>slowpoke-arithmetics</groupId>
+            <artifactId>slowpoke-arithmetics</artifactId>
+            <version>${global.version}</version>
+            <scope>provided</scope>
+        </dependency>	
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
