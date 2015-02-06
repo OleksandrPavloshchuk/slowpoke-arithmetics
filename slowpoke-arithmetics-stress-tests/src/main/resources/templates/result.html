@@ -2,7 +2,8 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link type="text/css" href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+<link type="text/css" href="../static/css/main.css"
+	th:href="@{/css/main.css}" rel="stylesheet" />
 <title>Stress test result</title>
 </head>
 <body>
@@ -10,18 +11,20 @@
 	<h1>Stress test result</h1>
 	<p th:text="'Operation: ' + ${testData.operation.displayName}" />
 	<p th:text="'Execution time: ' + ${testData.executeTime} + 'ms'" />
-	<fieldset>
-		<legend>1st operand:</legend>
-		<p th:text="${testData.arg1}" />
-	</fieldset>
-	<fieldset>
-		<legend>2st operand:</legend>
-		<p th:text="${testData.arg2}" />
-	</fieldset>
-	<fieldset>
-		<legend>Result:</legend>
-		<p th:text="${testData.result}" />
-	</fieldset>
+	<table style="width: 100%">
+		<tr>
+			<td>1st</td>
+			<td class="res" th:text="${testData.arg1}"></td>
+		</tr>
+		<tr>
+			<td>2nd</td>
+			<td class="res" th:text="${testData.arg2}"></td>
+		</tr>
+		<tr>
+			<td>result</td>
+			<td class="res" th:text="${testData.result}"></td>
+		</tr>
+	</table>
 
 </body>
 </html>

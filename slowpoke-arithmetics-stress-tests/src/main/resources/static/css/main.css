@@ -8,8 +8,11 @@ input {
 	margin-left: 1em;
 }
 
-fieldset {
-	max-width: 80em;
-	width: 80em;
+td {
+	vertical-align: top;
 }
 
+.res {
+	font-family: Courier, monotype;
+	font-size: 8pt;
+}

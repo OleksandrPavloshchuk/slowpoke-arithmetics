@@ -5,9 +5,6 @@ import java.util.Random;
 import org.slowpoke.arithmetics.VeryLargeNumber;
 
 public class TestData {
-
-	// TODO: implement more sophisticated numbers generation
-
 	private Random random = new Random(System.currentTimeMillis());
 
 	private int digits1;
@@ -64,12 +61,29 @@ public class TestData {
 		this.executeTime = System.currentTimeMillis();
 		this.result = operation.perform(this.arg1, this.arg2);
 		this.executeTime = System.currentTimeMillis() - this.executeTime;
+
+		// Prepare text for showing:
+		this.arg1 = split(this.arg1);
+		this.arg2 = split(this.arg2);
+		this.result = split(this.result);
+	}
+
+	private String split(String src) {
+		StringBuilder sb = new StringBuilder(src.length());
+		for (int i = 0; i < src.length(); i++) {
+			sb.append(src.charAt(i)).append(' ');
+		}
+		return sb.toString();
 	}
 
 	private String generateRandomNumber(int digits) {
+		int pointPos = 1 + random.nextInt(digits - 1);
 		StringBuilder sb = new StringBuilder(digits);
 		for (int i = 0; i < digits; i++) {
 			sb.append(random.nextInt(10));
+			if (pointPos == i) {
+				sb.append('.');
+			}
 		}
 		return sb.toString();
 	}
