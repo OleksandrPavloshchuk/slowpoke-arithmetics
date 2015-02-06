@@ -5,13 +5,13 @@
     <parent>
         <groupId>slowpoke-arithmetics</groupId>
         <artifactId>slowpoke-arithmetics-all</artifactId>
-        <version>${global.version}</version>
+        <version>0.2</version>
         <relativePath>..</relativePath>
     </parent>
 	
     <groupId>slowpoke-arithmetics</groupId>
     <artifactId>slowpoke-arithmetics</artifactId>
-    <version>${global.version}</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
     <name>slowpoke-arithmetics</name>
@@ -28,8 +28,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
