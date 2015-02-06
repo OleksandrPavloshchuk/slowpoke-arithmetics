@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+label {
+	display: block;
+	margin-bottom: 0.2em;
+}
+input {
+	margin-left: 1em;
+}
+
+fieldset {
+	max-width: 80em;
+	width: 80em;
+}
+
