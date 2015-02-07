@@ -10,17 +10,33 @@
 	<h1>Very big number operations: stress tests</h1>
 	<form action="#" th:action="@{/report}" th:object="${testData}"
 		method="post">
-
-		<label for="digits1">Number of digits in 1st argument: <input
-			type="text" name="digits1" th:field="*{digits1}" /></label> <label
-			for="digits2">Number of digits in 2nd argument:<input
-			type="text" name="digits2" th:field="*{digits2}" /></label><label
-			for="operation">Operation: <select name="operation"
-			th:field="*{operation}">
-				<option th:each="op : ${testData.Operation.values()}"
-					th:value="${op}" th:text="${op.displayName}">Wireframe</option>
-		</select>
-		</label> <input type="submit" /><input type="reset" />
+		<table>
+			<tr>
+				<td><label for="digits1">Number of digits in 1st
+						argument:</label>
+				</td>
+				<td><input type="text" name="digits1" th:field="*{digits1}" />
+				</td>
+			</tr>
+			<tr>
+				<td><label for="digits2">Number of digits in 2nd
+						argument:</label></td>
+				<td><input type="text" name="digits2" th:field="*{digits2}" />
+				</td>
+			</tr>
+			<tr>
+				<td><label for="operation">Operation:</label></td>
+				<td><select name="operation" th:field="*{operation}">
+						<option th:each="op : ${testData.Operation.values()}"
+							th:value="${op}" th:text="${op.displayName}">display
+							name</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;"><input type="submit" /> <input type="reset" />
+				</td>
+			</tr>
+		</table>
 	</form>
 </body>
 </html>
