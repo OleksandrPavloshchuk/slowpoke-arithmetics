@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+label {
+	display: block;
+	margin-bottom: 0.2em;
+}
+input {
+	margin-left: 1em;
+}
+
+td {
+	vertical-align: top;
+}
+
+.res {
+	font-family: Courier, monotype;
+	font-size: 8pt;
+}

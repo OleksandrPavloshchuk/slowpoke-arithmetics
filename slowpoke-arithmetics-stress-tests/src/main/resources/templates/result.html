@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css" href="../static/css/main.css"
+	th:href="@{/css/main.css}" rel="stylesheet" />
+<title>Stress test result</title>
+</head>
+<body>
+	<a href="/">Back to input form</a>
+	<h1>Stress test result</h1>
+	<p th:text="'Operation: ' + ${testData.operation.displayName}" />
+	<p th:text="'Execution time: ' + ${testData.executeTime} + 'ms'" />
+	<table style="width: 100%">
+		<tr>
+			<td>1st</td>
+			<td class="res" th:text="${testData.arg1}"></td>
+		</tr>
+		<tr>
+			<td>2nd</td>
+			<td class="res" th:text="${testData.arg2}"></td>
+		</tr>
+		<tr>
+			<td>result</td>
+			<td class="res" th:text="${testData.result}"></td>
+		</tr>
+	</table>
+
+</body>
+</html>
